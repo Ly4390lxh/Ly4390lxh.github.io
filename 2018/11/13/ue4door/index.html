@@ -31,7 +31,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">ZED</h3>
+    <h3 class="subtitle">ue4door</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -48,21 +48,42 @@
     <div class="section">
         <div class="article">
     <div class="main">
-        <h1 class="title">ZED</h1>
+        <h1 class="title">ue4door</h1>
         <div class="stuff">
-            <span>十月 24, 2018</span>
+            <span>十一月 13, 2018</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/LOL/">LOL</a></li></ul>
-
 
         </div>
         <div class="content markdown">
-            <p>动态图片测试</p>
-<p>​                                  不残血不会操作</p>
-<p><img src="http://www.ganmyds.cn/servletPro/img/gif/xy_01.gif" alt="cover"></p>
-<p>​                                       </p>
-<p>​                              狗瞎子</p>
-<p>​            <img src="http://www.ganmyds.cn/servletPro/img/gif/xy_02.gif" alt="2"></p>
+            <p>自动门制作</p>
+<p>首先随意拉出一面墙，和表示门的物体</p>
+<p>选择过场动画第三个</p>
+<p>给门添加动画效果，选择门，然后添加新的组</p>
+<p>由于只是让这个门上下或者左右移动，所以我们选择 </p>
+<p>###Movement track 移动轨迹</p>
+<p>选中这个物体的同时，点击这个小三角形我们会看到左下角出现了一个关键帧自动命名从0开始，我想让这个门在1.5秒内完成运动，所以我们在1.5秒处添加一个关键帧</p>
+<p>将这根轴从初始位子拖到1.5秒处按下键盘上的  <em>enter</em>  ，就会在此处出现一个三角（选中这个三角左下角出现他的名字表示此帧为关键帧1）</p>
+<p>做完上一步之后，回到场景将门向左拖动一个位子出现了一根黄色的轨迹线，说明成功了</p>
+<p>，我们可以在过场动画编辑器里面使用<em>play stop</em> 循环测试看看效果</p>
+<p>这样就实现了一个简单的移动动画，随意用上面的方法实现几种移动</p>
+<p>添加声音素材，<em>必须为wav格式</em> ，导入可以选着直接拖入到内容文件夹里。</p>
+<p>控制声音的基本办法差不多，把声音拖入到场景之后</p>
+<p>选着<em>sound track</em> 声音轨迹，控制声音的播放在0秒的时候创建<em>enter</em>一个关键帧开始播放，</p>
+<p>在有限的时间里就会自然播放。</p>
+<p>添加灯光的动画就是选中灯光后添加灯光组，下拉选着强度设置2个关键帧开始和结束，灯光一开始可以将强度5000改为0，然后在这里下一个关键帧那里</p>
+<p>将灯光的强度改为5000左右的强度，播放就会出现一个灯慢慢变亮，OK</p>
+<p>在基本里找到一个盒体触发器添加到场景里覆盖要触发的体积</p>
+<p>现在打开一个关卡蓝图脚本，编写触发的蓝图脚本</p>
+<p>选中触发器的同时在关卡蓝图里右键和出现相关事件函数，下拉选择碰撞中的</p>
+<p>###<em>on actor begin overlap</em></p>
+<p>选择过场动画的同时在蓝图里右键输入<em>play</em>,双击确定</p>
+<p>触发器和过场动画链接在一起，就会进入触发器的面积就会开启过场动画播放，编译测试</p>
+<p>增加一个延时控制，时间修改为3秒，与过场动画连接起来，表示过场动画播放完毕3秒之后执行下一个操作</p>
+<p>选中过场动画的同时在蓝图里右键输入 <em>reverse</em>,这个函数的作用是实现过场动画的倒放</p>
+<p>与延时函数的末尾连接起来，3秒之后倒放，就可以实现3秒后门自动关闭的效果</p>
+<p>刚刚测试了一下，门还在打开的过程就关闭了，说明延时函数和过场动画的时间发生了重叠，我的过场动画时长总共有5秒，这里延时必须比过场的时间长合理，于是我将延时改到了8秒，然后实现了3秒之后关闭的效果。（其中声音没有倒放暂时没有搞清楚）</p>
+<p>#图片还没有上传，可能不是太懂，下次更新我在完善好了</p>
+<p>##（图片要传到网上生成连接，还差一个小库，下次弄）</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
